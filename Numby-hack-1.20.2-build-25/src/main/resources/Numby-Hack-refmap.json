@@ -1,0 +1,44 @@
+{
+  "mappings": {
+    "cqb13/NumbyHack/mixins/ClientPlayerEntityMixin": {
+      "pushOutOfBlocks": "Lnet/minecraft/class_746;method_30673(DD)V"
+    },
+    "cqb13/NumbyHack/mixins/CustomPayloadS2CPacketMixin": {
+      "apply(Lnet/minecraft/network/listener/ClientCommonPacketListener;)V": "Lnet/minecraft/class_2658;method_53024(Lnet/minecraft/class_8705;)V"
+    },
+    "cqb13/NumbyHack/mixins/DeathScreenMixin": {
+      "init": "Lnet/minecraft/class_418;method_25426()V"
+    },
+    "cqb13/NumbyHack/mixins/EntityAccessor": {
+      "setFlag": "method_5729(IZ)V"
+    },
+    "cqb13/NumbyHack/mixins/TotemParticleMixin": {
+      "<init>": "Lnet/minecraft/class_734;<init>(Lnet/minecraft/class_638;DDDDDDLnet/minecraft/class_4002;)V"
+    },
+    "cqb13/NumbyHack/mixins/meteor/CrystalAuraAccessor": {
+      "bestTarget": "bestTarget:Lnet/minecraft/class_1657;"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "cqb13/NumbyHack/mixins/ClientPlayerEntityMixin": {
+        "pushOutOfBlocks": "Lnet/minecraft/class_746;method_30673(DD)V"
+      },
+      "cqb13/NumbyHack/mixins/CustomPayloadS2CPacketMixin": {
+        "apply(Lnet/minecraft/network/listener/ClientCommonPacketListener;)V": "Lnet/minecraft/class_2658;method_53024(Lnet/minecraft/class_8705;)V"
+      },
+      "cqb13/NumbyHack/mixins/DeathScreenMixin": {
+        "init": "Lnet/minecraft/class_418;method_25426()V"
+      },
+      "cqb13/NumbyHack/mixins/EntityAccessor": {
+        "setFlag": "method_5729(IZ)V"
+      },
+      "cqb13/NumbyHack/mixins/TotemParticleMixin": {
+        "<init>": "Lnet/minecraft/class_734;<init>(Lnet/minecraft/class_638;DDDDDDLnet/minecraft/class_4002;)V"
+      },
+      "cqb13/NumbyHack/mixins/meteor/CrystalAuraAccessor": {
+        "bestTarget": "bestTarget:Lnet/minecraft/class_1657;"
+      }
+    }
+  }
+}
