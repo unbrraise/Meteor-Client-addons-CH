@@ -8,6 +8,10 @@
 - TunnelESP
 - WurstGlide
 
+# meteor-crash-addon-latest-1.20.2禁用的模块
+- 无
+
+<hr></hr>
 测试版本:1.20.3
 <p>这些模块都是1.20.3用不了或者是会崩溃的</p>
 如需启用请与我联系或自行更改
