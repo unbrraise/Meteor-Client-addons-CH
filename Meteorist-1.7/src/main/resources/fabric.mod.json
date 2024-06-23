@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "meteorist",
+  "version": "${version}",
+  "name": "Meteorist",
+  "description": "Adds additional functionality to Meteor Client.",
+  "authors": [
+    "Zgoly"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Zgoly/Meteorist",
+    "sources": "https://github.com/Zgoly/Meteorist"
+  },
+  "icon": "assets/meteorist/icon.png",
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "meteor": [
+      "zgoly.meteorist.Meteorist"
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  }
+}
