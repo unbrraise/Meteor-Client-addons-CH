@@ -17,6 +17,11 @@
 - AutoSneak
 - DmSpam
 - SlotClick
+
+# MeteorPlus-1.20.2禁用的模块
+- AutoObsidianFarm
+- VelocityPlus
+
 <hr></hr>
 测试版本:1.20.3
 <p>这些模块都是1.20.3用不了或者是会崩溃的</p>
